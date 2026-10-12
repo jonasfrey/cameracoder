@@ -1,0 +1,18 @@
+{
+  "name": "cameracoder",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "deno task start",
+    "dev": "deno task dev",
+    "test": "deno task test",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "vue": "3.5.43"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0"
+  }
+}

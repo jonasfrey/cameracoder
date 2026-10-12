@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101518">
+    <meta name="description"
+      content="A local camera workspace. Preview, adjust, inspect, and capture.">
+    <title>CameraCoder · Camera workspace</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/style.css">
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 5 5" />
+      </symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
+      </symbol>
+      <symbol id="i-contrast" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" />
+      </symbol>
+      <symbol id="i-curve" viewBox="0 0 24 24">
+        <path d="M3 3v18h18M4 19C15 19 8 5 20 5" />
+      </symbol>
+      <symbol id="i-twist" viewBox="0 0 24 24">
+        <path d="M12 12c-3-4 5-5 5 0 0 8-13 7-13-1C4-1 22 1 21 13" />
+      </symbol>
+      <symbol id="i-rgb" viewBox="0 0 24 24">
+        <circle cx="8" cy="12" r="5" />
+        <circle cx="16" cy="12" r="5" />
+      </symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24">
+        <path d="M4 7h4l2-3h4l2 3h4v13H4z" />
+        <circle cx="12" cy="13" r="4" />
+      </symbol>
+      <symbol id="i-sliders" viewBox="0 0 24 24">
+        <path d="M4 7h9m4 0h3M4 17h3m4 0h9" />
+        <circle cx="15" cy="7" r="2" />
+        <circle cx="9" cy="17" r="2" />
+      </symbol>
+      <symbol id="i-filter" viewBox="0 0 24 24">
+        <path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5" />
+      </symbol>
+      <symbol id="i-scope" viewBox="0 0 24 24">
+        <path d="M3 4v16h18M6 16v-3m4 3V8m4 8V5m4 11v-6" />
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18" />
+      </symbol>
+      <symbol id="i-motion" viewBox="0 0 24 24">
+        <circle cx="15" cy="12" r="7" />
+        <path d="M2 6h4M1 12h4m-3 6h4m9-10v4l3 2" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M6 18 18 6" />
+      </symbol>
+      <symbol id="i-grip" viewBox="0 0 24 24">
+        <path d="M8 5h.01M16 5h.01M8 12h.01M16 12h.01M8 19h.01M16 19h.01" stroke-width="3" />
+      </symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24">
+        <path d="M20 8a8 8 0 1 0 0 8M20 3v5h-5" />
+      </symbol>
+      <symbol id="i-play" viewBox="0 0 24 24">
+        <path d="m8 4 12 8-12 8z" />
+      </symbol>
+      <symbol id="i-stop" viewBox="0 0 24 24">
+        <rect x="6" y="6" width="12" height="12" rx="1" />
+      </symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24">
+        <path d="M8 5v14M16 5v14" stroke-width="4" />
+      </symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M9 3v18m6-18v18M3 9h18M3 15h18" />
+      </symbol>
+      <symbol id="i-mirror" viewBox="0 0 24 24">
+        <path d="M12 3v18M8 6l-5 12h5zm8 0 5 12h-5z" />
+      </symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24">
+        <path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6" />
+      </symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24">
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7S2 12 2 12z" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6" />
+      </symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24">
+        <path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3z" />
+      </symbol>
+      <symbol id="i-usb" viewBox="0 0 24 24">
+        <path d="M12 21V3m-3 3 3-3 3 3M12 16l-6-4V8m6 4 6-3V6" />
+        <circle cx="6" cy="7" r="1" />
+        <path d="M17 4h2v2h-2z" />
+      </symbol>
+    </svg>
+    <div id="app" v-cloak>
+      <header class="topbar">
+        <a class="brand" href="/"
+          aria-label="CameraCoder home"><span class="brand-mark"><icon s_name="camera"></icon></span><span>camera<span class="brand-light">coder</span><small>LOCAL CAMERA WORKSPACE</small></span></a>
+        <div class="connection"
+          :title="b_connected ? 'Deno server connected' : 'Reconnecting to Deno server'"><span class="status-dot" :class="{ online: b_connected }"></span><span>{{ b_connected ? "Connected" : "Reconnecting" }}</span><span class="local-tag">LOCAL</span></div>
+        <button id="open-tool-search" class="button search-button" @click="f_open_search"
+          aria-label="Search controls and commands" aria-haspopup="dialog" :aria-expanded="b_search"
+          aria-keyshortcuts="Control+Shift+P Meta+Shift+P"
+          title="Search controls and commands (Ctrl+Shift+P)">
+          <icon s_name="search"></icon><span>Find a tool</span><kbd>Ctrl ⇧ P</kbd>
+        </button>
+        <button class="button capture-button" @click="f_capture"
+          :disabled="!b_frame"><icon s_name="camera"></icon><span>Capture</span><kbd>S</kbd></button>
+      </header>
+
+      <section class="active-settings" aria-label="Active settings">
+        <span class="active-settings-label">CHANGES <span>{{ a_active_tools.length }}</span></span>
+        <div class="active-settings-list">
+          <span v-if="!a_active_tools.length"
+            class="no-changes">Changed settings appear here. Click to reset.</span>
+          <button v-for="o_tool in a_active_tools" :key="o_tool.s_id" :id="'active-' + o_tool.s_id"
+            class="active-chip"
+            :title="o_tool.s_label + ': ' + o_tool.s_value + ' · ' + o_tool.s_reset_hint"
+            :aria-label="'Remove ' + o_tool.s_label" @click="f_remove_tool(o_tool)">
+            <icon :s_name="o_tool.s_icon"></icon><span>{{ o_tool.s_label }}<strong>{{ o_tool.s_value }}</strong></span><icon s_name="close" class="chip-remove"></icon>
+          </button>
+        </div>
+      </section>
+
+      <dialog ref="o_search_dialog" class="search-dialog" aria-labelledby="search-title"
+        @close="b_search = false" @click.self="f_close_search" @keydown.tab.prevent="f_search_tab">
+        <div class="search-card">
+          <header
+            class="search-heading"><h2 id="search-title">Find a tool</h2><button class="icon-button small" aria-label="Close search" @click="f_close_search"><icon s_name="close"></icon></button></header>
+          <div class="search-field">
+            <icon s_name="search"></icon>
+            <input ref="o_search_input" v-model="s_query" @keydown="f_search_key" type="text"
+              role="combobox"
+              aria-label="Search controls and commands" aria-autocomplete="list"
+              :aria-expanded="b_search"
+              aria-controls="search-results"
+              :aria-activedescendant="a_search_results.length ? 'search-result-' + n_result : undefined"
+              autocomplete="off" spellcheck="false" placeholder="Brightness, zebra, motion, camera…"
+              autofocus>
+          </div>
+          <div class="search-summary"
+            role="status">{{ a_search_results.length }} {{ a_search_results.length === 1 ? "result" : "results" }}<span>Settings, effects & actions</span></div>
+          <div id="search-results" class="search-results" role="listbox"
+            aria-label="Matching tools">
+            <button v-for="(o_tool, n_index) in a_search_results" :key="o_tool.s_id"
+              :id="'search-result-' + n_index"
+              class="search-result" :class="{ selected: n_result === n_index }" role="option"
+              tabindex="-1"
+              :aria-selected="n_result === n_index" :aria-disabled="o_tool.b_disabled"
+              :data-tool="o_tool.s_id"
+              @click="f_choose_tool(o_tool)">
+              <span class="result-icon"><icon :s_name="o_tool.s_icon"></icon></span>
+              <span
+                class="result-text"><strong>{{ o_tool.s_label }}</strong><small>{{ o_tool.s_group }}<template v-if="o_tool.s_value"> · {{ o_tool.s_value }}</template></small></span>
+              <span
+                class="result-action">{{ o_tool.b_disabled ? "Unavailable" : o_tool.s_hint }}</span>
+            </button>
+          </div>
+          <p v-if="!a_search_results.length"
+            class="search-empty">No matching tools. Try “exposure”, “trace”, or “capture”.</p>
+          <footer
+            class="search-help"><span><kbd>↑</kbd><kbd>↓</kbd> navigate <kbd>Enter</kbd> choose</span><span><kbd>Esc</kbd> close</span></footer>
+        </div>
+      </dialog>
+
+      <main ref="o_workspace" class="workspace">
+        <div class="stage" :class="{ 'has-frame': b_frame }">
+          <div v-if="!b_frame" class="empty-state">
+            <div class="camera-orbit"><span></span><icon s_name="camera"></icon></div>
+            <div class="eyebrow">YOUR CAMERA. YOUR PERSPECTIVE.</div>
+            <h1>A little more than a preview.</h1>
+            <p>Connect a camera. Shape the image.<br>See every detail, live.</p>
+            <button class="button primary" @click="f_start"
+              :disabled="b_starting"><icon s_name="play"></icon>{{ b_starting ? "Opening source…" : s_selected === "demo" ? "Try the test source" : "Start preview" }}</button>
+            <button class="text-button"
+              @click="f_demo">Explore with a test source <span>↗</span></button>
+          </div>
+          <div class="preview-frame" v-show="b_frame"
+            :style="{ aspectRatio: n_width + '/' + n_height, '--aspect': n_width / n_height }">
+            <canvas ref="o_preview" aria-label="Processed camera preview"></canvas>
+            <div v-if="b_grid" class="thirds" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <span v-if="o_settings.b_bypass" class="preview-label">ORIGINAL</span>
+            <span v-else-if="b_paused" class="preview-label">FROZEN</span>
+          </div>
+        </div>
+
+        <div
+          class="stage-meta"><span class="status-dot" :class="{ online: b_running && !b_paused }"></span><span>{{ b_starting ? 'CONNECTING' : b_paused ? 'FROZEN' : b_running ? 'LIVE' : b_frame ? 'STOPPED' : 'STANDBY' }}</span><span class="meta-divider"></span><span>{{ s_source_label || "No active source" }}</span><span v-if="b_frame" class="source-dimensions">{{ n_width }} × {{ n_height }}</span></div>
+        <div class="view-tools" aria-label="Preview tools">
+          <button class="icon-button" :class="{ active: b_grid }" :aria-pressed="b_grid"
+            title="Rule of thirds (G)" aria-label="Rule of thirds"
+            @click="b_grid = !b_grid"><icon s_name="grid"></icon></button>
+          <button class="icon-button" :class="{ active: o_settings.b_mirror }"
+            :aria-pressed="o_settings.b_mirror" title="Mirror preview" aria-label="Mirror preview"
+            id="mirror-preview"
+            @click="o_settings.b_mirror = !o_settings.b_mirror"><icon s_name="mirror"></icon></button>
+          <button class="icon-button" :class="{ active: o_settings.b_bypass }"
+            :aria-pressed="o_settings.b_bypass" title="Toggle original (B)"
+            aria-label="Toggle original" id="compare-original"
+            @click="o_settings.b_bypass = !o_settings.b_bypass"><icon s_name="eye"></icon></button>
+          <span class="tool-divider"></span>
+          <button class="icon-button" :disabled="!b_running"
+            :title="b_paused ? 'Resume (Space)' : 'Freeze (Space)'"
+            :aria-label="b_paused ? 'Resume preview' : 'Freeze preview'"
+            @click="b_paused = !b_paused"><icon :s_name="b_paused ? 'play' : 'pause'"></icon></button>
+          <button class="icon-button" title="Fullscreen" aria-label="Fullscreen"
+            @click="f_fullscreen"><icon s_name="expand"></icon></button>
+        </div>
+
+        <section v-for="o_panel in a_panels" :key="o_panel.s_id" v-show="o_panel.b_open"
+          class="panel" :class="'panel-' + o_panel.s_id" :style="f_panel_style(o_panel)"
+          :aria-label="o_panel.s_title" @pointerdown="f_raise(o_panel)">
+          <header class="panel-header" @pointerdown="f_drag($event, o_panel)">
+            <span
+              class="panel-title"><icon :s_name="o_panel.s_icon"></icon>{{ o_panel.s_title }}</span>
+            <div><button class="drag-handle" title="Drag to move. Arrow keys move this panel." :aria-label="'Move ' + o_panel.s_title" @keydown="f_move_key($event, o_panel)"><icon s_name="grip"></icon></button><button class="icon-button small" :aria-label="'Close ' + o_panel.s_title" @pointerdown.stop @click="o_panel.b_open = false"><icon s_name="close"></icon></button></div>
+          </header>
+          <div class="panel-body">
+            <template v-if="o_panel.s_id === 'source'">
+              <div
+                class="section-label">VIDEO SOURCE <button class="icon-button small" @click="f_refresh" title="Refresh cameras" aria-label="Refresh cameras"><icon s_name="refresh"></icon></button></div>
+              <div class="camera-list" role="group" aria-label="Available cameras">
+                <button v-for="o_camera in a_cameras" :key="o_camera.s_key" class="camera-option"
+                  :class="{ selected: s_selected === o_camera.s_key }"
+                  :aria-pressed="s_selected === o_camera.s_key"
+                  @click="f_select(o_camera.s_key)"><span class="source-icon"><icon :s_name="o_camera.s_kind === 'demo' ? 'spark' : o_camera.s_kind === 'host' ? 'usb' : 'camera'"></icon></span><span><strong>{{ o_camera.s_label }}</strong><small>{{ o_camera.s_kind === 'host' ? 'Host · ' + o_camera.s_id : o_camera.s_kind === 'demo' ? 'Generated · no camera needed' : 'Browser camera' }}</small></span><icon v-if="s_selected === o_camera.s_key" s_name="check" class="selection-check"></icon></button>
+              </div>
+              <button class="button subtle full-width permission-button" @click="f_permission"
+                :disabled="b_permission">{{ b_permission ? "Waiting for permission…" : "Enable camera access" }}</button>
+              <p v-if="s_camera_note" class="helper">{{ s_camera_note }}</p>
+              <p v-for="s_warning in a_warnings" :key="s_warning" class="helper">{{ s_warning }}</p>
+              <div class="separator"></div>
+              <div
+                class="field-row"><label for="resolution">Capture size</label><select id="resolution" v-model="s_resolution" :disabled="b_running || b_starting"><option value="640x480">640 × 480</option><option value="1280x720">1280 × 720</option><option value="1920x1080">1920 × 1080</option></select></div>
+              <div
+                class="field-row"><label for="framerate">Frame rate</label><select id="framerate" v-model.number="n_target_fps" :disabled="b_running || b_starting"><option :value="15">15 fps</option><option :value="30">30 fps</option><option :value="60">60 fps</option></select></div>
+              <div
+                class="field-row"><label for="quality">Process width</label><select id="quality" v-model.number="n_process_width"><option :value="480">480 px · fast</option><option :value="960">960 px · balanced</option><option :value="1920">1920 px · detail</option></select></div>
+              <button v-if="b_running || b_starting" class="button stop-button full-width"
+                @click="f_stop"><icon s_name="stop"></icon>Stop camera</button>
+              <button v-else class="button primary full-width"
+                @click="f_start"><icon s_name="play"></icon>Start preview</button>
+              <div
+                class="privacy-note"><span class="status-dot online"></span>Images stay on this device.</div>
+            </template>
+
+            <template v-if="o_panel.s_id === 'adjust'">
+              <div
+                class="section-label">LIGHT & TONE <button class="text-button tiny" @click="f_reset_tone">Reset</button></div>
+              <div v-for="o_control in a_adjustments" :key="o_control.s_key"
+                class="slider-field"><label :for="o_control.s_key">{{ o_control.s_label }}<output>{{ f_value(o_settings[o_control.s_key]) }}</output></label><input type="range" :id="o_control.s_key" v-model.number="o_settings[o_control.s_key]" :min="o_control.n_min" :max="o_control.n_max" :step="o_control.n_step" @dblclick="o_settings[o_control.s_key] = o_defaults[o_control.s_key]"></div>
+              <svg class="curve-chart" viewBox="0 0 240 90" role="img" aria-label="Gamma curve">
+                <path class="chart-grid" d="M0 30h240M0 60h240M60 0v90M120 0v90M180 0v90" />
+                <path class="chart-reference" d="M0 90 240 0" />
+                <path class="chart-line" :d="s_curve_path" />
+              </svg>
+              <div class="curve-labels"><span>SHADOWS</span><span>HIGHLIGHTS</span></div>
+              <div class="separator"></div>
+              <button class="button subtle full-width"
+                @click="o_settings.b_bypass = !o_settings.b_bypass"
+                :aria-pressed="o_settings.b_bypass"><icon s_name="eye"></icon>{{ o_settings.b_bypass ? "Show processed image" : "Compare with original" }}<kbd>B</kbd></button>
+            </template>
+
+            <template v-if="o_panel.s_id === 'filters'">
+              <div class="section-label">IMAGE FILTER</div>
+              <div
+                class="filter-grid"><button v-for="o_filter in a_filters" :key="o_filter.s_id" :id="'filter-' + o_filter.s_id" :class="{ selected: o_settings.s_filter === o_filter.s_id }" :aria-pressed="o_settings.s_filter === o_filter.s_id" @click="o_settings.s_filter = o_filter.s_id"><span class="filter-swatch" :class="'swatch-' + o_filter.s_id"></span>{{ o_filter.s_label }}</button></div>
+              <div class="separator"></div>
+              <div class="section-label">PLAY</div>
+              <div
+                class="slider-field"><label for="twist">Twist<output>{{ f_value(o_settings.n_twist) }}</output></label><input id="twist" type="range" min="-5" max="5" step="0.1" v-model.number="o_settings.n_twist"></div>
+              <div
+                class="slider-field"><label for="rgb">RGB offset<output>{{ o_settings.n_rgb }} px</output></label><input id="rgb" type="range" min="0" max="40" v-model.number="o_settings.n_rgb"></div>
+              <button class="text-button tiny"
+                @click="f_reset_filters">Reset filters</button>
+            </template>
+
+            <template v-if="o_panel.s_id === 'inspect'">
+              <div class="section-label">LUMINANCE</div>
+              <div class="histogram" role="img"
+                aria-label="Live luminance histogram"><i v-for="(n_bin, n_index) in a_histogram" :key="n_index" :style="{ height: Math.max(1, n_bin / n_histogram_max * 100) + '%' }"></i></div>
+              <div class="curve-labels"><span>0</span><span>128</span><span>255</span></div>
+              <div class="separator"></div>
+              <div
+                class="field-row"><label for="exposure">Exposure warning</label><select id="exposure" v-model="o_settings.s_exposure"><option value="off">Off</option><option value="zebra">Zebra</option><option value="solid">Black / white</option></select></div>
+              <div
+                class="thresholds"><label for="under">Under<input id="under" type="number" min="0" max="127" v-model.number="o_settings.n_under"></label><label for="over">Over<input id="over" type="number" min="128" max="255" v-model.number="o_settings.n_over"></label></div>
+              <div
+                class="field-row"><label for="focus">Focus peaking</label><select id="focus" v-model="o_settings.s_focus"><option value="off">Off</option><option value="red">Red</option><option value="green">Green</option><option value="blue">Blue</option></select></div>
+              <div
+                class="slider-field"><label for="sensitivity">Edge threshold<output>{{ o_settings.n_focus }}</output></label><input id="sensitivity" type="range" min="1" max="255" v-model.number="o_settings.n_focus"></div>
+              <p
+                class="helper">Thresholds apply when exposure warnings or focus peaking are enabled.</p>
+            </template>
+
+            <template v-if="o_panel.s_id === 'motion'">
+              <div class="section-label">ACROSS FRAMES</div>
+              <div
+                class="slider-field"><label for="motion">Motion threshold<output>{{ o_settings.n_motion || "Off" }}</output></label><input id="motion" type="range" min="0" max="100" v-model.number="o_settings.n_motion"></div>
+              <label
+                class="checkbox-row"><input id="motion-only" type="checkbox" v-model="o_settings.b_motion_only">Apply image tools only to moving pixels</label>
+              <p class="helper">Green marks changes. A lower threshold detects smaller changes.</p>
+              <div class="separator"></div>
+              <div
+                class="slider-field"><label for="trace">Trace persistence<output>{{ Math.round(o_settings.n_trace * 100) }}%</output></label><input id="trace" type="range" min="0" max="0.95" step="0.01" v-model.number="o_settings.n_trace"></div>
+              <p class="helper">Blend previous frames into the live image.</p>
+              <button class="text-button tiny"
+                @click="f_reset_motion">Reset motion tools</button>
+            </template>
+
+            <template v-if="o_panel.s_id === 'code'">
+              <div
+                class="section-label">PER-PIXEL EXPRESSIONS <span class="local-tag">RGB</span></div>
+              <p class="helper code-help">Write an expression for each output channel.</p>
+              <label v-for="(s_channel, n_index) in ['Red', 'Green', 'Blue']" :key="s_channel"
+                class="expression-field"><span :class="'channel-' + n_index">{{ s_channel }}</span><input type="text" :id="'expression-' + n_index" spellcheck="false" maxlength="300" v-model="a_expressions[n_index]" :aria-label="s_channel + ' expression'"></label>
+              <div
+                class="code-actions"><button class="button primary" @click="f_apply_custom"><icon s_name="code"></icon>Apply</button><button class="button subtle" @click="f_clear_custom">Clear</button></div>
+              <p v-if="s_custom_error" class="inline-error" role="alert">{{ s_custom_error }}</p>
+              <p v-else-if="a_custom" class="success-note">Custom expressions active.</p>
+              <div class="separator"></div>
+              <p
+                class="helper"><code>r g b l</code> 0–255 · <code>x y</code> 0–1 · <code>t</code> seconds</p>
+              <p
+                class="helper"><code>+ - * / % **</code><br><code>sin cos abs sqrt floor ceil round</code><br><code>min max pow clamp mix step</code></p>
+              <button class="text-button tiny"
+                @click="f_example">Load example: negative ↗</button>
+            </template>
+          </div>
+        </section>
+        <div v-if="s_error" class="error-banner"
+          role="alert"><span>{{ s_error }}</span><button class="icon-button small" aria-label="Dismiss error" @click="s_error = ''"><icon s_name="close"></icon></button></div>
+        <div v-if="s_toast" class="toast"
+          role="status"><icon s_name="check"></icon>{{ s_toast }}</div>
+      </main>
+
+      <footer class="bottom-bar">
+        <nav class="tool-dock"
+          aria-label="Tool panels"><button v-for="o_panel in a_panels" :key="o_panel.s_id" class="dock-button" :class="{ active: o_panel.b_open }" :aria-pressed="o_panel.b_open" :title="o_panel.s_title" :aria-label="o_panel.s_title" @click="f_toggle_panel(o_panel)"><icon :s_name="o_panel.s_icon"></icon><span>{{ o_panel.s_short }}</span><i></i></button></nav>
+        <div
+          class="performance"><span>{{ n_fps }}<small> FPS</small></span><span>{{ n_ms }}<small> MS</small></span></div>
+        <button class="icon-button reset-workspace" title="Reset image tools and panel layout"
+          aria-label="Reset workspace" @click="f_reset_all"><icon s_name="refresh"></icon></button>
+      </footer>
+    </div>
+    <noscript>Enable JavaScript to use CameraCoder.</noscript>
+  </body>
+</html>

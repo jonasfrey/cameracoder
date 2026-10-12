@@ -1,4 +1,4 @@
-
+GPU is used for post processing the image. WebGL glsl is used
 image post tools: 
 - brightness
 - contrast 

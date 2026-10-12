@@ -1,0 +1,25 @@
+# Glossary
+
+- APN: abstract prefix notation.
+- `n_`: number. `s_`: string. `o_`: object. `a_`: array. `f_`: function. `b_`: boolean.
+- USB: Universal Serial Bus.
+- V4L2: Video for Linux 2.
+- MJPEG: JPEG frame stream.
+- WebSocket: persistent client/server connection.
+- FPS: frames per second.
+- GPU: graphics processing unit.
+- WebGL2: browser graphics API used for image processing.
+- GLSL: shader language; runs image operations on the GPU.
+- OffscreenCanvas: canvas available to a Web Worker.
+- ImageBitmap: transferable image resource.
+- GPU history: alternating textures containing previous source and processed frames.
+- Gamma: nonlinear tone curve.
+- Luminance: weighted RGB brightness.
+- Zebra: exposure warning stripes.
+- Peaking: high-contrast edge overlay.
+- Trace: previous-frame blend.
+- Process width: maximum output width.
+- Tool search: searchable settings and actions; Ctrl+Shift+P.
+- Change chip: visible non-default setting; click to reset that control.
+- Browser camera: device attached to the browser machine.
+- Host camera: device attached to the Deno machine.
